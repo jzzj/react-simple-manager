@@ -5,6 +5,7 @@
 export default class ViewManager {
     constructor(store, ...managers){
         this.__store = store;
+        this.__store.updateView = this.updateView.bind(this);
         let events = [], handlers = [];
         managers.forEach((manager, idx) => {
             //pass store to state manager if manager.store not exists
@@ -13,7 +14,7 @@ export default class ViewManager {
             }
             manager.__viewManager = this;
             const managerEvents = manager.constructor.events || manager.events || {};
-            console.log(managerEvents, 'managerEvents');
+            
             let keys, values; 
             if(Array.isArray(managerEvents)){
                 keys = values = managerEvents;
@@ -26,7 +27,7 @@ export default class ViewManager {
             values.forEach((event, i) => {
                 const handler = manager[event];
                 if(handler && typeof(handler)==='function'){
-                    //handlers.push(handler.bind(manager));
+                    
                     this[keys[i]] = handler.bind(manager);
                 }else{
                     console.warn(keys[i], ' is not a function, please check the ', idx, ' manager');
@@ -73,8 +74,10 @@ export default class ViewManager {
         this.__view = view;
     }
 
-    updateViewState(){
-        const newestState = this.__store.getState();
-        return this.__view.setState(newestState);
+    updateView(){
+        if(!this.__view){
+            throw new Error("no view was bind to this manager, please call manager.bindView(view)!");
+        }
+        return this.__view.setState(this.__store.getState());
     }
 }
