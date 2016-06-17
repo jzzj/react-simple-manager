@@ -1,0 +1,81 @@
+{
+  "_args": [
+    [
+      "react-simple-manager@0.0.2",
+      "/Users/zangzhan/Documents/git/logistics"
+    ]
+  ],
+  "_from": "react-simple-manager@0.0.2",
+  "_id": "react-simple-manager@0.0.2",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/react-simple-manager",
+  "_nodeVersion": "5.5.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/react-simple-manager-0.0.2.tgz_1466148355375_0.5511365160346031"
+  },
+  "_npmUser": {
+    "email": "905951024@weanimals.net",
+    "name": "zangzhan"
+  },
+  "_npmVersion": "3.3.12",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "react-simple-manager",
+    "raw": "react-simple-manager@0.0.2",
+    "rawSpec": "0.0.2",
+    "scope": null,
+    "spec": "0.0.2",
+    "type": "version"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_shasum": "546df2e6afb7428dfbfed4bf1799a27379b0b3a0",
+  "_shrinkwrap": null,
+  "_spec": "react-simple-manager@0.0.2",
+  "_where": "/Users/zangzhan/Documents/git/logistics",
+  "author": {
+    "name": "zangzhan"
+  },
+  "bugs": {
+    "url": "https://github.com/jzzj/react-simple-manager/issues"
+  },
+  "dependencies": {
+    "immutable": "^3.8.1"
+  },
+  "description": "Simple way to manager your react/react-native apps. Only includes state、store、view. However, will make your app more strong and maintainable.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "546df2e6afb7428dfbfed4bf1799a27379b0b3a0",
+    "tarball": "https://registry.npmjs.org/react-simple-manager/-/react-simple-manager-0.0.2.tgz"
+  },
+  "homepage": "https://github.com/jzzj/react-simple-manager#readme",
+  "keywords": [
+    "flux",
+    "react",
+    "react-native",
+    "state-manager"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "zangzhan",
+      "email": "905951024@weanimals.net"
+    }
+  ],
+  "name": "react-simple-manager",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jzzj/react-simple-manager.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.2"
+}
