@@ -3,6 +3,12 @@
  */
 
 export default class ViewManager {
+    static __navigator = null;
+
+    static getNavigator = function(){
+        return __navigator;
+    };
+
     constructor(store, ...managers){
         this.__store = store;
         this.__store.updateView = this.updateView.bind(this);
@@ -72,6 +78,14 @@ export default class ViewManager {
 
     bindView(view){
         this.__view = view;
+        
+        if(view && view.props && view.props.navigator){
+            __navigator = view.props.navigator;
+        }
+    }
+
+    getNavigator(){
+        return __navigator;
     }
 
     updateView(){
