@@ -12,7 +12,7 @@ export default class ViewManager {
     constructor(store, ...managers){
         this.__store = store;
         if(!store.updateView){
-            this.__store.updateView = this.updateView.bind(this);
+            this.__store.updateView = this.__updateView.bind(this);
         }
         let events = [], handlers = [];
         managers.forEach((manager, idx) => {
@@ -96,10 +96,45 @@ export default class ViewManager {
     }
 
     bindView(view){
-        this.__view = view;
+        const { updateView } = this;
         
+        this.__view = view;
+        this.__waitFor = 0;
+        this.updateView = ()=>{
+            this.__waitFor++;
+        };
+
         if(view && view.props && view.props.navigator){
             ViewManager.__navigator = view.props.navigator;
+        }
+
+        const {componentDidMount, componentWillUnmount} = view;
+        Object.assign(view, {
+            componentWillUnmount: (...argv)=>{
+                this.__view = null;
+                this.updateView = null;
+                this.__store.__updateView = null;
+                return componentWillUnmount.apply(view, argv);
+            },
+            componentDidMount: (...argv)=>{
+                this.updateView = updateView;
+                if(this.__waitFor > 0){
+                    this.updateView();
+                }
+
+                const ret = componentDidMount.apply(view, argv);
+                this.__ready = true;
+                return ret;
+            }
+        });
+        return this;
+    }
+
+    __updateView(update){
+        if(!this.__ready){
+            this.__waitFor = (this.__waitFor || 0) +1;
+        }else{
+            return this.updateView();
         }
     }
 
