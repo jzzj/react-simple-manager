@@ -11,7 +11,9 @@ export default class ViewManager {
 
     constructor(store, ...managers){
         this.__store = store;
-        this.__store.updateView = this.updateView.bind(this);
+        if(!store.updateView){
+            this.__store.updateView = this.updateView.bind(this);
+        }
         let events = [], handlers = [];
         managers.forEach((manager, idx) => {
             //pass store to state manager if manager.store not exists
