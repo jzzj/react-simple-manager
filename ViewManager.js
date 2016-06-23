@@ -31,7 +31,7 @@ export default class ViewManager {
 
             events = events.concat(keys);
             values.forEach((event, i) => {
-                const handler = manager[event];
+                let handler = manager[event];
                 if(handler && typeof(handler)==='function'){
                     handler = handler.bind(manager);
                     const queue = this[keys[i]];
