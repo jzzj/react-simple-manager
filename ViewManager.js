@@ -33,8 +33,17 @@ export default class ViewManager {
             values.forEach((event, i) => {
                 const handler = manager[event];
                 if(handler && typeof(handler)==='function'){
-                    
-                    this[keys[i]] = handler.bind(manager);
+                    handler = handler.bind(manager);
+                    const queue = this[keys[i]];
+                    if(queue){
+                        if(Array.isArray(queue)){
+                            queue.push(handler)
+                        }else{
+                            queue = [queue, handler];
+                        }
+                    }else{
+                        this[keys[i]] = handler;
+                    }
                 }else{
                     console.warn(keys[i], ' is not a function, please check the ', idx, ' manager');
                 }
@@ -53,7 +62,13 @@ export default class ViewManager {
         const handler = this[action];
 
         if(handler){
-            return handler.apply(this, argv);
+            if(Array.isArray(handler)){
+                return handler.map(func => {
+                    return func.apply(this, argv);
+                });
+            }else{
+                return handler.apply(this, argv);
+            }
         }else{
             return console.warn(action, ' have no handler');
         }
