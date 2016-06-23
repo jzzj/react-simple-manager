@@ -6,7 +6,7 @@ export default class ViewManager {
     static __navigator = null;
 
     static getNavigator = function(){
-        return __navigator;
+        return ViewManager.__navigator;
     };
 
     constructor(store, ...managers){
@@ -99,12 +99,12 @@ export default class ViewManager {
         this.__view = view;
         
         if(view && view.props && view.props.navigator){
-            __navigator = view.props.navigator;
+            ViewManager.__navigator = view.props.navigator;
         }
     }
 
     getNavigator(){
-        return __navigator;
+        return ViewManager.__navigator;
     }
 
     updateView(){
