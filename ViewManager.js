@@ -51,13 +51,15 @@ export default class ViewManager {
         });
         this.__events = events;
         //this.__handlers = handlers;
-        this.__isUnique();
+        //this.__isUnique();
     }
 
     dispatch(action, ...argv){
-        if(this.__repeatList.indexOf(action) !== -1){
+        /*
+         if(this.__repeatList.indexOf(action) !== -1){
             console.warn('repeat events: ', this.__repeatList.join());
-        }
+         }
+        */
         
         const handler = this[action];
 
