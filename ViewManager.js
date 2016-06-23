@@ -39,7 +39,7 @@ export default class ViewManager {
                         if(Array.isArray(queue)){
                             queue.push(handler)
                         }else{
-                            queue = [queue, handler];
+                            this[keys[i]] = [queue, handler];
                         }
                     }else{
                         this[keys[i]] = handler;
