@@ -112,9 +112,9 @@ export default class ViewManager {
         Object.assign(view, {
             componentWillUnmount: (...argv)=>{
                 this.__view = null;
-                this.updateView = null;
-                this.__store.__updateView = null;
-                return componentWillUnmount.apply(view, argv);
+                this.updateView = ()=>{};
+                this.__store.updateView = null;
+                return componentWillUnmount&&componentWillUnmount.apply(view, argv);
             },
             componentDidMount: (...argv)=>{
                 this.updateView = updateView;
@@ -122,7 +122,7 @@ export default class ViewManager {
                     this.updateView();
                 }
 
-                const ret = componentDidMount.apply(view, argv);
+                const ret = componentDidMount&&componentDidMount.apply(view, argv);
                 this.__ready = true;
                 return ret;
             }
