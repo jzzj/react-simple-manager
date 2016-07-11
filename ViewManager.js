@@ -1,12 +1,18 @@
 /*
  * manage store、events and events's handlers
  */
-
+let __navigator = null;
 export default class ViewManager {
-    static __navigator = null;
+    static get __navigator(){
+        return __navigator;
+    }
 
-    static getNavigator = function(){
-        return ViewManager.__navigator;
+    static set __navigator(v){
+        __navigator = v;
+    }
+
+    static getNavigator(){
+        return __navigator;
     };
 
     constructor(store, ...managers){
