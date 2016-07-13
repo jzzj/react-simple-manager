@@ -13,7 +13,9 @@ export default function StoreManager(data = {}){
 
         setState(newState){
             __data = this.getImmutableData().merge(newState);
-            this.updateView();
+            if(typeof this.updateView==='function'){
+                this.updateView();
+            }
             return this.getState();
         }
     };
