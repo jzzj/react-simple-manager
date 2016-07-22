@@ -9,10 +9,12 @@ in your view
   import { ViewManager } from 'react-simple-manager';
   import TodoManager from '../manager/TodoManager';
   import YourStore from '../store/YourStore';
+  import OtherManager from '../manager/OtherManager';
   
   class TodoView extends React.Component{
     componentWillMount(){
-      this.manager = new ViewManager(YourStore, new TodoManager());
+      //It's ok to pass more than one manager here.
+      this.manager = new ViewManager(YourStore, new TodoManager() /* new OtherManager() */);
       this.manager.bindView(this);          //pass ref of view to manager
       this.manager.dispatch(ACTIONTYPE);    //dispatch an action
     }
