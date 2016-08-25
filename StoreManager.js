@@ -12,7 +12,9 @@ export default function StoreManager(data = {}){
         },
 
         setState(newState){
-            __data = this.getImmutableData().merge(newState);
+            if(typeof newState==="object"){
+                __data = this.getImmutableData().merge(newState);
+            }
             if(typeof this.updateView==='function'){
                 this.updateView();
             }
