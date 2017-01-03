@@ -1,3 +1,4 @@
+import StateManager from  './StateManager';
 /*
  * manage store、events and events's handlers
  */
@@ -22,7 +23,12 @@ export default class ViewManager {
         }
         let events = [], handlers = [];
         managers.forEach((manager, idx) => {
-            //pass store to state manager if manager.store not exists
+            // also could pass a Manager class that extends StateManager
+            if(Object.getPrototypeOf(manager) === StateManager){
+                manager = new manager();
+            }
+
+            // pass store to state manager if manager.store not exists
             if(!manager.store){
                 manager.store = store;
             }
@@ -53,7 +59,7 @@ export default class ViewManager {
                         this[keys[i]] = handler;
                     }
                 }else{
-                    console.warn(keys[i], ' is not a function, please check the ', idx, ' manager');
+                    console.warn(keys[i], 'is not a function, please check the', idx, 'manager');
                 }
             });
         });
@@ -110,6 +116,7 @@ export default class ViewManager {
             this.__waitFor++;
         };
 
+        // only for react-native
         if(view && view.props && view.props.navigator){
             ViewManager.__navigator = view.props.navigator;
         }

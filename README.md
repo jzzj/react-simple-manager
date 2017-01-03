@@ -1,9 +1,8 @@
 # react-simple-manager
-Simple way to manager your react/react-native apps. Only includes state、view. However, will make your app more strong and maintainable.
-
+Simple way to manager your react/react-native apps
 
 # Usage
-in your view
+In your view
 <pre>
   <code>
   import { ViewManager } from 'react-simple-manager';
@@ -14,7 +13,7 @@ in your view
   class TodoView extends React.Component{
     componentWillMount(){
       //It's ok to pass more than one manager here.
-      this.manager = new ViewManager(YourStore, new TodoManager() /* new OtherManager() */);
+      this.manager = new ViewManager(YourStore, new TodoManager() /* OtherManager // a manager class also well */);
       this.manager.bindView(this);          //pass ref of view to manager
       this.manager.dispatch(ACTIONTYPE);    //dispatch an action
     }
@@ -22,7 +21,7 @@ in your view
   </code>
 </pre>
 
-in your manager
+In your manager
 <pre>
   <code>
   import { StateManager } from 'react-simple-manager';
@@ -45,7 +44,7 @@ in your manager
   </code>
 </pre>
 
-in your store
+In your store
 <pre>
   <code>
   import {StoreManager} from 'react-simple-manager';
