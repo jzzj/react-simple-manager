@@ -61,5 +61,5 @@
     "prepublish": "npm test",
     "mkexample": "node_modules/.bin/babel examples/todoList.src.js --out-file examples/todoList.js  --preset=es2015,react && browserify examples/todoList.js  -o examples/todoList.js.b && cat examples/todoList.js.b>examples/todoList.js && rm -f examples/todoList.js.b"
   },
-  "version": "0.0.17"
+  "version": "0.1.0"
 }
