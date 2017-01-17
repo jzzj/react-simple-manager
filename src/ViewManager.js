@@ -143,11 +143,11 @@ export default class ViewManager {
         return this;
     }
 
-    __updateView(update){
+    __updateView(cb){
         if(!this.__ready){
-            this.__waitFor = (this.__waitFor || 0) +1;
+            this.__waitFor = (this.__waitFor || 0) + 1;
         }else{
-            return this.updateView();
+            return this.updateView(cb);
         }
     }
 
@@ -155,10 +155,10 @@ export default class ViewManager {
         return ViewManager.__navigator;
     }
 
-    updateView(){
+    updateView(cb){
         if(!this.__view){
             throw new Error("no view was bind to this manager, please call manager.bindView(view)!");
         }
-        return this.__view.setState(this.__store.getState());
+        return this.__view.setState(this.__store.getState(), cb);
     }
 }
